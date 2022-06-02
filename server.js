@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/auth", require("./routes/auth"));
 // app.use("/api/address", require("./routes/address"));
-
+app.use("/api/excelData", require("./routes/uploadFiles"));
 //connect to db
 //fetch data from the request
 //rmMik7KaWxPXmT7N

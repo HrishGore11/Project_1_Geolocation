@@ -14,21 +14,21 @@ const storage = Multer.diskStorage({
   },
 });
 const upload = Multer({ storage: storage });
-app.get("/", (req, res) => {
+router.get("/getexcelData", (req, res) => {
   excelModel.find((err, data) => {
     if (err) {
       console.log(err);
     } else {
       if (data != "") {
-        res.render("home", { result: data });
+        res.json({ result: data });
       } else {
-        res.render("home", { result: {} });
+        res.json({ result: {} });
       }
     }
   });
 });
 
-app.post("/", upload.single("excel"), (req, res) => {
+router.post("/postexcelData", upload.single("excel"), (req, res) => {
   var workbook = XLSX.readFile(req.file.path);
   var sheet_namelist = workbook.SheetNames;
   var x = 0;
@@ -39,11 +39,13 @@ app.post("/", upload.single("excel"), (req, res) => {
         console.log(err);
       } else {
         console.log(data);
+        // res.json({ data: data });
       }
     });
     x++;
   });
-  res.redirect("/");
+  // res.redirect("/getexcelData");
+  // res.json({ data: xldata });
 });
 
 module.exports = router;
