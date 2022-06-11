@@ -9,6 +9,7 @@ app.use(cors());
 app.use("/api/auth", require("./routes/auth"));
 // app.use("/api/address", require("./routes/address"));
 app.use("/api/excelData", require("./routes/uploadFiles"));
+app.use("/api/CSVData", require("./routes/uploadCSV"));
 //connect to db
 //fetch data from the request
 //rmMik7KaWxPXmT7N
